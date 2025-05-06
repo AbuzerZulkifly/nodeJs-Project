@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AbuzerZulkifly/FullStack-NodeJs.git"
+    "url": "git+https://github.com/AbuzerZulkifly/nodeJs-Project.git"
   },
   "author": "Abuzer Zulkifly",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AbuzerZulkifly/FullStack-NodeJs/issues"
+    "url": "https://github.com/AbuzerZulkifly/nodeJs-Project/issues"
   },
-  "homepage": "https://github.com/AbuzerZulkifly/FullStack-NodeJs#readme",
+  "homepage": "https://github.com/AbuzerZulkifly/nodeJs-Project#readme",
   "dependencies": {
     "date-fns": "^4.1.0",
     "express": "^4.21.1",
