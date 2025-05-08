@@ -8,6 +8,8 @@ const {StatusCodes} = require("http-status-codes")
 const taskRouter = require("./user-tasks/tasks.router.js");
 const authRouter = require("./auth/auth.router.js")
 const usersRouter = require("./users/users.router.js")
+const mongoose = require("mongoose");
+
 const app = express();
 const port = 3001;
 // const middleware = function (req, res, next) {
@@ -38,6 +40,27 @@ app.use("/users", usersRouter)
 app.use((req,res)=>{
   res.status(StatusCodes.NOT_FOUND).json(null)
 })
-app.listen(port, ()=>{
-  console.log(`listening on ${port}`);
-   })
+
+async function bootstrap(){
+  try {
+    await mongoose.connect("mongodb+srv://zulkiflygitzer:Abuzer%403121@nodejs.y3heyh0.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs",
+      {dbName:"task_manager_project"}
+    );
+
+    //We use this method here because we want our app to start only when its connected to the database
+    console.log("Connected to mongodb");
+    app.listen(port, ()=>{
+      console.log(`listening on ${port}`);
+       })
+    
+  } catch (error) {
+
+    console.log(error);
+    //this statement is used if there was an error the app to close smoothly 
+    process.exit(1);
+    
+  }
+}
+
+bootstrap()
+
