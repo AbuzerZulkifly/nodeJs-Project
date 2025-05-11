@@ -1,33 +1,27 @@
 const { StatusCodes, ReasonPhrases, getReasonPhrase } = require("http-status-codes")
+const createNewTask = require("./providers/createTask.provider.js")
+const fetchTasks = require ("./providers/fetchTasks.provider.js")
+const updateTasks = require ("./providers/updateTask.provider.js")
+const deleteTasks = require ("./providers/deleteTask.provider.js")
 
-function handleGetTasks(req, res) {
-  let response = [
-    {
-      "title": "New Task",
-      "date": "2025-01-01T12:00:00Z",
-      "status": "todo",
-      "description": "This is a new task to be done",
-      "priority": "High"
-    },
-    {
-      "title": "New Task 2",
-      "date": "2025-01-01T12:00:00Z",
-      "status": "todo",
-      "description": "This is a new task to be done",
-      "priority": "High"
-    }
-  ]
-  res.status(StatusCodes.OK).json(response)
+async function handleGetTasks(req, res) {
+  const fetchTask = await fetchTasks(req, res)
+  res.status(StatusCodes.OK).json(fetchTask)
 }
 
-function handlePostTasks(req, res) {
-  res.send("Post Tasks")
+async function handlePostTasks(req, res) {
+  const createTask = await createNewTask(req, res)
+  res.status(StatusCodes.CREATED).json(createTask);
 }
-function handlePatchTasks(req, res) {
-  res.send("Patch Tasks")
+
+async function handlePatchTasks(req, res) {
+  const updateTask = await updateTasks(req, res);
+  res.status(StatusCodes.OK).json(updateTask);
 }
-function handleDeleteTasks(req, res) {
-  res.send("Delete Tasks")
+
+async function handleDeleteTasks(req, res) {
+  const deleteTask = await deleteTasks(req, res);
+  res.status(StatusCodes.OK).json(deleteTask);
 }
 
 module.exports = {
