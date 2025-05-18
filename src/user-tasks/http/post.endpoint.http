@@ -2,8 +2,8 @@ POST http://localhost:3001/tasks
 Content-Type: application/json
 
 {
-  "title": "Latest Title",
-  "description": "This is a another new task to be done",
+  "title": "Create a new user",
+  "description": "A new user to be created",
   "status": "todo",
   "priority": "low",
   "dueDate": "2025-01-01T12:00:00.000+00:00",

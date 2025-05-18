@@ -5,8 +5,7 @@ const updateUsers = require("./providers/updateUser.provider.js");
 const deleteUsers = require("./providers/deleteUser.provider.js"); 
 
 async function createUser(req,res){
-  const users = await createUsers(req, res)
-  res.status(StatusCodes.OK).json(users)
+  return await createUsers(req, res)
 }
 
 async function fetchUser(req,res){
@@ -18,7 +17,8 @@ async function updateUser(req,res){
 }
 
 async function deleteUser(req,res){
-  res.send("user created")
+  const deleteUser = await deleteUsers(req, res);
+  res.status(StatusCodes.OK).json(deleteUser)
 }
 
 module.exports = {

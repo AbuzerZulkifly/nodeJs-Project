@@ -5,28 +5,25 @@ const updateTasks = require ("./providers/updateTask.provider.js")
 const deleteTasks = require ("./providers/deleteTask.provider.js")
 
 async function handleGetTasks(req, res) {
-  const fetchTask = await fetchTasks(req, res)
-  res.status(StatusCodes.OK).json(fetchTask)
+  return await fetchTasks(req, res)
+  
 }
 
 async function handlePostTasks(req, res) {
-  const createTask = await createNewTask(req, res)
-  res.status(StatusCodes.CREATED).json(createTask);
+  return await createNewTask(req, res)
 }
 
-async function handlePatchTasks(req, res) {
-  const updateTask = await updateTasks(req, res);
-  res.status(StatusCodes.OK).json(updateTask);
+async function handleUpdateTasks(req, res) {
+  return await updateTasks(req, res);
 }
 
 async function handleDeleteTasks(req, res) {
-  const deleteTask = await deleteTasks(req, res);
-  res.status(StatusCodes.OK).json(deleteTask);
+  return await deleteTasks(req, res);
 }
 
 module.exports = {
   handleGetTasks, 
   handlePostTasks, 
-  handlePatchTasks,
+  handleUpdateTasks,
   handleDeleteTasks
 }

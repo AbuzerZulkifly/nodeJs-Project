@@ -1,0 +1,5 @@
+DELETE http://localhost:3001/users/delete
+Content-Type: application/json
+{
+  "_id": "682044470af4291db1c7f4e7"
+}

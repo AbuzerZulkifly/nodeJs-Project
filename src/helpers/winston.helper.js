@@ -12,15 +12,6 @@ Debug (5): For debugging information, often used during development.
 Silly (6): For the most detailed information, often used for very specific debugging scenarios or logging everything.
 */
 
-const logger = winston.createLogger({
-  format: winston.format.combine(
-    winston.format.timestamp({
-      format: "YYYY-MM-DD HH:mm:ss"
-    }),
-    winston.format.printf((info)=> `${info.timestamp} [${info.level}] : ${info.message}`)
-  )
-})
-
 const transport = [ 
   new winston.transports.Console({
     level: "info",
@@ -31,14 +22,28 @@ const transport = [
 
   new winston.transports.File({
     level: "info",
-    filename: path.join(__dirname, "../../", "info.log"),
+    filename: path.join(__dirname, "../..", "info.log"),
     format: winston.format.json()
   }),
 
   new winston.transports.File({
     level: "error",
-    filename: path.join(__dirname, "../../", "error.log"),
+    filename: path.join(__dirname, "../..", "error.log"),
     format: winston.format.json()
   }),
 
 ]
+
+const logger = winston.createLogger({
+  format: winston.format.combine(
+    winston.format.timestamp({
+      format: "YYYY-MM-DD HH:mm:ss"
+    }),
+    winston.format.printf((info)=> `${info.timestamp} [${info.level}] : ${info.message}`)
+  ),
+  transports: transport
+});
+
+
+
+module.exports = logger
