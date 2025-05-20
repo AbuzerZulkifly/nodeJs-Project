@@ -1,25 +1,15 @@
-const responseFormatter = require("./middleware/statusResponseFormatter.js")
 const express = require("express");
-const morgan = require("morgan");
-const fileSystem = require("fs");
-const path = require("path");
-const cors = require("cors")
-const {StatusCodes} = require("http-status-codes")
-const taskRouter = require("./user-tasks/tasks.router.js");
-const authRouter = require("./auth/auth.router.js")
-const usersRouter = require("./users/users.router.js")
 const mongoose = require("mongoose");
-const expressWinstonLogger = require("./middleware/expressWinston.middleware.js");
 const dotenv = require("dotenv");
-const { console } = require("inspector");
+const configureApp = require("./settings/config.js");
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 const envFile = `.env.${process.env.NODE_ENV}`;
 dotenv.config({path: envFile});
 const app = express();
-const port = 3001;
-console.log(process.env.NODE_ENV)
-console.log(process.env.TEST_VARIABLE)
+app.use(express.json());
+// Every thing in the env files are a string, so we need to convert it to a number to get the port number
+const port = parseInt(process.env.PORT);
 // const middleware = function (req, res, next) {
 //   req.info = {
 //     appname: "Task Manager",
@@ -27,33 +17,13 @@ console.log(process.env.TEST_VARIABLE)
 //   }
 //   next();
 // }
-const corsOption = {origin: ["example.com"]};
 
-app.use(responseFormatter)
-app.use(expressWinstonLogger)
-app.use(cors(corsOption))
-app.use(express.json());
-// app.use(middleware);
-let accesslogStream = fileSystem.createWriteStream(
-  path.join(__dirname, "..", "access.log"),
-  {
-    flags: "a",
-  }
-);
-
-
-app.use(morgan("combined", {stream: accesslogStream}));
-app.use("/", taskRouter);
-app.use("/auth", authRouter)
-app.use("/users", usersRouter)
-app.use((req,res)=>{
-  res.status(StatusCodes.NOT_FOUND).json(null)
-})
-
+configureApp(app);
 async function bootstrap(){
   try {
-    await mongoose.connect("mongodb+srv://zulkiflygitzer:Abuzer%403121@nodejs.y3heyh0.mongodb.net/?retryWrites=true&w=majority&appName=NodeJs",
-      {dbName:"task_manager_project"}
+    console.log("Connecting to mongodb");
+    await mongoose.connect(process.env.DATABASE_URL,
+      {dbName:process.env.DATABASE_NAME}
     );
     //We use this method here because we want our app to start only when its connected to the database
     console.log("Connected to mongodb");
