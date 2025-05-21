@@ -34,3 +34,35 @@ const createNewUser = new Schema({
 const Users = model("users", createNewUser)
 
 module.exports = Users;
+
+/** 
+ * @swagger
+ * components:
+ *  schemas:
+ *   User:
+ *    type: object
+ *    required:
+ *     - firstName
+ *     - email
+ *     - password
+ *    properties:
+ *      firstName: 
+ *       type: string
+ *       description: The first name of the user
+ *       example: "Abuzer Zulkifly"
+ *      
+ *      email:
+ *        type: string
+ *        description: The email of the user
+ *        example: "abzer@gmail.com"
+ * 
+ *      password:
+ *        type: string
+ *        description: The password of the user
+ *        example: "ab@12345"
+ *    example:
+ *      firstName: "Abuzer"
+ *      lastName: "zulkifly"
+ *      email: "abzer@gmail.com"
+ *      password: "Aa@12345"    
+ */
