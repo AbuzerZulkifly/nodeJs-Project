@@ -36,7 +36,15 @@ const taskSchema = new Schema({
     required: [true, "Please enter a due date to your task"],
     default: "normal"
   },
-}, { timestamps: true } ) 
+
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+    required: [true, "Please enter a user for your task"]
+  },
+}, 
+{ timestamps: true }
+ ) 
 
 const Task = model("Task", taskSchema);
 

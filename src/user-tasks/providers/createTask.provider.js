@@ -5,7 +5,8 @@ const errorLogger = require("../../helpers/errorLogger.helper.js")
 
 async function createNewTask(req, res) {
   const validateRequest = matchedData(req)
-  const createTask = new Task(validateRequest)
+  const createTask = new Task({...validateRequest, user: req.user.sub})
+  console.log(validateRequest)
 
   try {
     await createTask.save();

@@ -26,15 +26,10 @@ const createNewUser = new Schema({
 
   password: {
     type: String,
-    required: [true, "Please enter a password"],
-    minLenght: [8, "Your password should have minimum 8 characters"],
-    validate: function (password){
-       return /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password);
-    }, 
-       message: ()=> `Your password must include atleast one number, uppercase letter, lowercaser letter and
-                       one special character like !,@,#,$,%,^ or &* `
-  },
-})
+    required: [true, "Please enter a password"]    
+    },
+  }
+)
 
 const Users = model("users", createNewUser)
 
