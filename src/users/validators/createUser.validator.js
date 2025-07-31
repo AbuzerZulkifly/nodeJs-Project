@@ -7,7 +7,8 @@ const createUserValidator = [
   body('lastName').isLength({ max: 50 }),
   body('email', 'Please enter a valid email').notEmpty().isEmail(),
   body('email').isLength({ max: 100 }),
-  body('password', 'Please enter a password').notEmpty().isLength({ min: 8, max: 100 }).matches(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/),    
+  body('password', 'Please enter a password').notEmpty().isLength({ min: 8, max: 100 }),    
+  body('password', 'Your password must have 8 characters. A capital letter, a specail character and a number is required').matches(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)
 ]
 
 module.exports = createUserValidator;

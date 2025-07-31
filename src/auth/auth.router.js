@@ -66,6 +66,6 @@ module.exports = authRouter
  *        description: The password of the user
  *        example: "ab@12345"
  *    example:
- *      email: "abzer@gmail.com"
- *      password: "Aa@12345"    
+ *      email: "abuzer@gmail.com"
+ *      password: "Aa@123456"    
  */

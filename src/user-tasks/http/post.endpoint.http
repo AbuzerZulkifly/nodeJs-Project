@@ -1,10 +1,10 @@
 POST http://localhost:3001/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODJjNzMyMjM2ZWJiZGY3Mzc1ZjdiZDciLCJlbWFpbCI6ImFidXplckBnbWFpbC5jb20iLCJpYXQiOjE3NDc3ODkwODEsImV4cCI6MTc0Nzg3NTQ4MX0.BASF9A5H0xak6kkbOk-I6UWEMemqX-QdtsGJX3-ppys
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODU3ZmM4M2JjOWI5MmYwOTFkYTIwN2MiLCJlbWFpbCI6ImF6QGdtYWlsLmNvbSIsImlhdCI6MTc1MDg2NjkwOCwiZXhwIjoxNzUwOTUzMzA4fQ.Mf3T7mpJEb7rzbj9ouAYo6e6Ahd9lmZ5qLKzDlCYT8M
 
 {
-  "title": "Create a new user",
-  "description": "A new user to be created",
+  "title": "New Task",
+  "description": "A new task",
   "status": "todo",
   "priority": "low",
   "dueDate": "2025-01-01T12:00:00.000+00:00"

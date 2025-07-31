@@ -51,6 +51,10 @@ module.exports = Users;
  *       description: The first name of the user
  *       example: "Abuzer Zulkifly"
  *      
+ *      lastName:
+ *       type: string
+ *       description: The first name of the user
+ *       example: "Abuzer Zulkifly"
  *      email:
  *        type: string
  *        description: The email of the user
